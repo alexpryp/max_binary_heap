@@ -1,12 +1,15 @@
 "use strict"
 
-let MaxHeap = function() {
+class MaxHeap {
+    constructor() {
+        this.heap = [null];
+    }
     
-    this.heap = [null];
-    
-    this.print = () => this.heap;
+    print() {
+        return this.heap;
+    }
 
-    this.insert = function(num) {
+    insert(num) {
         this.heap.push(num);
         if (this.heap.length > 2) {
             let idx = this.heap.length - 1;
@@ -17,13 +20,13 @@ let MaxHeap = function() {
                         idx = Math.floor(idx/2);
                     } else {
                         break;
-                    };
-                };
-            };
-        };
-    };
+                    }
+                }
+            }
+        }
+    }
     
-    this.remove = function() {
+    remove() {
         let smallest = this.heap[1];
         if (this.heap.length > 2) {
             this.heap[1] = this.heap[this.heap.length - 1];
@@ -44,30 +47,30 @@ let MaxHeap = function() {
                 } else {
                     [this.heap[i], this.heap[right]] = [this.heap[right], this.heap[i]];
                     i = 2 * i + 1;
-                };
+                }
                 left = 2 * i;
                 right = 2 * i + 1;
                 if (this.heap[left] == undefined || this.heap[right] == undefined) {
                     break;
-                };
-            };
+                }
+            }
         } else if (this.heap.length == 2) {
             this.heap.splice(1, 1);
         } else {
             return null;
-        };
+        }
         return smallest;
-    };
+    }
 
-    this.sort = function() {
+    sort() {
         let result = new Array();
         while (this.heap.length > 1) {
             result.push(this.remove());
-        };
+        }
         return result;
-    };
+    }
 
-};
+}
 
 
 let maxHeap = new MaxHeap();
